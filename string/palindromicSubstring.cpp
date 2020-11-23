@@ -40,3 +40,45 @@ public:
         return count;
     }
 };
+
+//Another one o(n*n) and  o(1)
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	//code	return 0;
+	int t;
+	cin>>t;
+	while(t--){
+	    string s;
+	    cin>>s;
+	    int maxlength=1;
+	    int len = s.size();
+	    int start=0;
+	    int low,high;
+	    for(int i=1;i<len;i++){
+	        low=i-1;
+	        high=i;
+	        while(low>=0 and high<len and s[low]==s[high]){
+	            if(high-low+1>maxlength){
+	                start=low;
+	                maxlength=high-low+1;
+	            }
+	            low--;
+	            high++;
+	        }
+	        low=i-1;
+	        high=i+1;
+	        while(low>=0 and high<len and s[low]==s[high]){
+	            if(high-low+1>maxlength){
+	                start=low;
+	                maxlength=high-low+1;
+	            }
+	            low--;
+	            high++;
+	        }
+	    }
+	    cout<<s.substr(start,maxlength)<<"\n";
+	}
+}
